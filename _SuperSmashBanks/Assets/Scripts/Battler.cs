@@ -116,4 +116,24 @@ public class Battler : MonoBehaviour
     public void SetStunned() {
         timeLastHit = Time.time;
     }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        //Debug.LogFormat($"We ({name}) collided with a {other.name}");
+        var maybeMelee = other.gameObject.GetComponentInParent<Melee>();
+        if (maybeMelee != null) {
+            // No friendly fire
+            if (maybeMelee.faction != faction) {
+                // Dead things don't collide
+                if (IsAlive) {
+                    // No stunlock
+                    if (!IsStunned()) {
+                        Debug.Log("Ouch! "+ Time.time);
+                        //TODO: Take damage
+                        SetStunned();
+                    }
+                }
+            }
+        }
+    }
 }

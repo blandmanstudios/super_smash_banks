@@ -22,24 +22,4 @@ public class Melee : MonoBehaviour
     {
 
     }
-
-    void OnTriggerStay2D(Collider2D other)
-    {
-        //Debug.LogFormat($"We ({name}) collided with a {other.name}");
-        var maybeBattler = other.gameObject.GetComponentInParent<Battler>();
-        if (maybeBattler != null) {
-            // No friendly fire
-            if (maybeBattler.faction != faction) {
-                // Dead things don't collide
-                if (maybeBattler.IsAlive) {
-                    // No stunlock
-                    if (!maybeBattler.IsStunned()) {
-                        //Debug.Log("Haha, take that! "+ Time.time);
-                        //TODO: Damage the battler
-                        maybeBattler.SetStunned();
-                    }
-                }
-            }
-        }
-    }
 }
