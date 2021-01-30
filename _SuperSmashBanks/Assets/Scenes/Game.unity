@@ -152,6 +152,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templateBattler: {fileID: 3775676783191815644, guid: 5e0ff5b108cbb4b468a4d77c219a8200,
     type: 3}
+  templateMelee: {fileID: 6286318062900407356, guid: 0c7c67387ea11e54f9eb3e3dd3c4451a,
+    type: 3}
   numStartingShortAIs: 10
   numStartingLongAIs: 10
   shorts: []

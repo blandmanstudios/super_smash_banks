@@ -10,6 +10,11 @@ public class Battler : MonoBehaviour
     // false if this is an AI
     // false if this is a dead player
     public bool isPlayerMovementAllowed;
+    public float cooldownMelee = 0.5f;
+
+    float lastUsedMelee;
+
+    public Runner_GameScene runner;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +26,7 @@ public class Battler : MonoBehaviour
     void Update()
     {
         DoPlayerMovement();
+        DoPlayerAttacking();
     }
 
 
@@ -52,6 +58,17 @@ public class Battler : MonoBehaviour
                 Runner_GameScene.playAreaUpperRight.y - Runner_GameScene.BattlerHalfWidth
             );
             transform.position = position;
+        }
+    }
+
+    public void DoPlayerAttacking() {
+        if (isPlayerMovementAllowed) {
+            if (Input.GetKeyDown(KeyCode.M)) {
+                if (Time.time - lastUsedMelee > cooldownMelee) {
+                    lastUsedMelee = Time.time;
+                    runner.InstantiateMelee(transform.position, faction);
+                }
+            }
         }
     }
 }

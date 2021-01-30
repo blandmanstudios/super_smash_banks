@@ -16,8 +16,11 @@ public class Runner_GameScene : MonoBehaviour
     Color colorLong = new Color32(128,0,0,255);
     Color colorPlayerShort = new Color32(0,0,255,255);
     Color colorPlayerLong = new Color32(255,0,0,255);
+    Color colorMeleeShort = new Color32(0,255,255,255);
+    Color colorMeleeLong = new Color32(255,0,255,255);
 
     [SerializeField] Battler templateBattler;
+    [SerializeField] Melee templateMelee;
 
     public int numStartingShortAIs;
     public int numStartingLongAIs;
@@ -63,6 +66,10 @@ public class Runner_GameScene : MonoBehaviour
         }
         battler.isAI = isAI;
         battler.isPlayerMovementAllowed = !isAI;
+
+        // TODO: We could use a singleton pattern
+
+        battler.runner = this;
 
         // TODO: This could fail if the arena is too small for the number of battlers
 
@@ -114,5 +121,11 @@ public class Runner_GameScene : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public Melee InstantiateMelee(Vector2 location, Faction faction) {
+        var newMelee = Instantiate(templateMelee, location, Quaternion.identity);
+        newMelee.bodyGraphic.color = (faction == Faction.Shorts) ? colorMeleeShort : colorMeleeLong;
+        return newMelee;
     }
 }
