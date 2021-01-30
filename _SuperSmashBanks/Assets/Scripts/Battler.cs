@@ -24,7 +24,7 @@ public class Battler : MonoBehaviour
     }
 
 
-    public virtual void DoPlayerMovement() {
+    public void DoPlayerMovement() {
         if (isPlayerMovementAllowed) {
             float horizontalInput = Input.GetAxis("Horizontal");
             if(!Input.GetKey("left") && !Input.GetKey("a") && !Input.GetKey("right") && !Input.GetKey("d")) {
