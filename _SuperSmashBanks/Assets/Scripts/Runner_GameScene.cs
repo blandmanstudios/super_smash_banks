@@ -70,6 +70,7 @@ public class Runner_GameScene : MonoBehaviour
         battler.isBattlerActive = true;
 
         if (isAI) {
+            battler.InitAndStartAIMovement();
             battler.InitAndStartAIAttacking();
         }
 

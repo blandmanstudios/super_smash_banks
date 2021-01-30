@@ -51,6 +51,7 @@ MonoBehaviour:
   isBattlerActive: 0
   ourCollider: {fileID: 3890953613449538757}
   runner: {fileID: 0}
+  rb: {fileID: -5956410874928823279}
 --- !u!50 &-5956410874928823279
 Rigidbody2D:
   serializedVersion: 4

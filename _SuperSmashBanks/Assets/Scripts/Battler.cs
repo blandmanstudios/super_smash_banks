@@ -26,6 +26,11 @@ public class Battler : MonoBehaviour
     // TODO: Make more sophisticated
     public static float timeBetweenAIAttacks = 5f;
 
+    [SerializeField] Rigidbody2D rb;
+
+    bool aiVelocityStoredForRecovery;
+    Vector2 lastKnownAIVelocity = Vector2.zero;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,8 +43,19 @@ public class Battler : MonoBehaviour
         if (isBattlerActive) {
             if (IsStunned()) {
                 //Debug.Log("Can't do anything b/c stunned");
+                if (!aiVelocityStoredForRecovery) {
+                    lastKnownAIVelocity = rb.velocity;
+                    aiVelocityStoredForRecovery = true;
+                    rb.velocity = Vector2.zero;
+                }
             } else {
-                if (!isAI) {
+                if (isAI) {
+                    if (aiVelocityStoredForRecovery) {
+                        rb.velocity = lastKnownAIVelocity;
+                        aiVelocityStoredForRecovery = false;
+                    }
+                    DoAIMovement();
+                } else {
                     DoPlayerMovement();
                     DoPlayerAttacking();
                 }
@@ -78,6 +94,21 @@ public class Battler : MonoBehaviour
     }
 
     // Assumed: Battler is active and not stunned
+    public void DoAIMovement() {
+        if (transform.position.y >= Runner_GameScene.playAreaUpperRight.y - Runner_GameScene.BattlerHalfWidth) {
+            rb.velocity = new Vector2(rb.velocity.x, -Mathf.Abs(rb.velocity.y));
+        } else if (transform.position.y <= Runner_GameScene.playAreaLowerLeft.y + Runner_GameScene.BattlerHalfWidth) {
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Abs(rb.velocity.y));
+        }
+
+        if (transform.position.x <= Runner_GameScene.playAreaLowerLeft.x + Runner_GameScene.BattlerHalfWidth) {
+            rb.velocity = new Vector2(Mathf.Abs(rb.velocity.x), rb.velocity.y);
+        } else if (transform.position.x >= Runner_GameScene.playAreaUpperRight.x - Runner_GameScene.BattlerHalfWidth) {
+            rb.velocity = new Vector2(-Mathf.Abs(rb.velocity.x), rb.velocity.y);
+        }
+    }
+
+    // Assumed: Battler is active and not stunned
     public void DoPlayerAttacking() {
         if (Input.GetKeyDown(KeyCode.M)) {
             Attack();
@@ -100,6 +131,15 @@ public class Battler : MonoBehaviour
             lastUsedMelee = Time.time;
             runner.InstantiateMelee(transform.position, faction);
         }
+    }
+
+    public void InitAndStartAIMovement() {
+        var randomMotionAngle = Random.Range(-180.0f, 180.0f);
+
+        float angleInRads = randomMotionAngle * Mathf.Deg2Rad;
+        Vector2 unitVector = new Vector2(Mathf.Cos(angleInRads), Mathf.Sin(angleInRads));
+        Vector2 velocityVector = unitVector * Runner_GameScene.aiMoveSpeed;
+        rb.velocity = velocityVector;
     }
 
     // Cannot call in Start() because we first need to know whether we're AI
