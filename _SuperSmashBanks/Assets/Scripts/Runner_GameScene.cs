@@ -9,6 +9,8 @@ public class Runner_GameScene : MonoBehaviour
     public static float BattlerHalfWidth = 0.25f;
     public static float tooCloseSqrMag = 0.25f;
 
+    public static float playerMoveSpeed = 4f;
+    public static float aiMoveSpeed = 3.5f;
 
     Color colorShort = new Color32(0,0,128,255);
     Color colorLong = new Color32(128,0,0,255);
@@ -31,6 +33,8 @@ public class Runner_GameScene : MonoBehaviour
         longs = new List<Battler>();
         InstantiateFactionAIs(Faction.Shorts, numStartingShortAIs);
         InstantiateFactionAIs(Faction.Longs, numStartingLongAIs);
+        // TODO: Player gets to pick which side to join and when
+        InstantiateBattler(Faction.Shorts, false);
     }
 
     void InstantiateFactionAIs(Faction faction, int number) {
@@ -41,7 +45,11 @@ public class Runner_GameScene : MonoBehaviour
 
     Battler InstantiateBattler(Faction faction, bool isAI) {
         var battler = Instantiate(templateBattler);
-        battler.bodyGraphic.color = (faction == Faction.Shorts) ? colorShort : colorLong;
+        if (isAI) {
+            battler.bodyGraphic.color = (faction == Faction.Shorts) ? colorShort : colorLong;
+        } else {
+            battler.bodyGraphic.color = (faction == Faction.Shorts) ? colorPlayerShort : colorPlayerLong;
+        }
         battler.faction = faction;
         switch (faction) {
             case Faction.Shorts:
@@ -54,6 +62,7 @@ public class Runner_GameScene : MonoBehaviour
                 throw new System.Exception($"Unhandled faction {faction}");
         }
         battler.isAI = isAI;
+        battler.isPlayerMovementAllowed = !isAI;
 
         // TODO: This could fail if the arena is too small for the number of battlers
 
