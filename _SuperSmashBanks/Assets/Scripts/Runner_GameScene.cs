@@ -22,8 +22,8 @@ public class Runner_GameScene : MonoBehaviour
     [SerializeField] Battler templateBattler;
     [SerializeField] Melee templateMelee;
 
-    public int numStartingShortAIs;
-    public int numStartingLongAIs;
+    public static int numStartingShortAIs = 10;
+    public static int numStartingLongAIs = 10;
 
     // Player is included
     public List<Battler> shorts;

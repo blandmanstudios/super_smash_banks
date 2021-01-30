@@ -10,11 +10,18 @@ public class Battler : MonoBehaviour
     // false if this is an AI
     // false if this is a dead player
     public bool isPlayerMovementAllowed;
-    public float cooldownMelee = 0.5f;
-
-    float lastUsedMelee;
+    public Collider2D ourCollider;
+    
+    public static float cooldownMelee = 0.5f;
+    private float lastUsedMelee;
+    
+    public static float stunDuration = 0.5f;
+    private float timeLastHit;
 
     public Runner_GameScene runner;
+
+    // Stub
+    public bool IsAlive => true;
 
     // Start is called before the first frame update
     void Start()
@@ -25,8 +32,10 @@ public class Battler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DoPlayerMovement();
-        DoPlayerAttacking();
+        if (!IsStunned()) {
+            DoPlayerMovement();
+            DoPlayerAttacking();
+        }
     }
 
 
@@ -64,11 +73,20 @@ public class Battler : MonoBehaviour
     public void DoPlayerAttacking() {
         if (isPlayerMovementAllowed) {
             if (Input.GetKeyDown(KeyCode.M)) {
-                if (Time.time - lastUsedMelee > cooldownMelee) {
+                if ((Time.time - lastUsedMelee) > cooldownMelee) {
                     lastUsedMelee = Time.time;
                     runner.InstantiateMelee(transform.position, faction);
                 }
             }
         }
+    }
+
+    public bool IsStunned() {
+        var timeSinceLastStunBegan = Time.time - timeLastHit;
+        return (timeSinceLastStunBegan < stunDuration);
+    }
+
+    public void SetStunned() {
+        timeLastHit = Time.time;
     }
 }
