@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Runner_GameScene : MonoBehaviour
 {
-    // Bounds are (-6.5,-5) and (6.5,2)
-    public static Vector2 playAreaLowerLeft = new Vector2(-6.5f, -5f);
-    public static Vector2 playAreaUpperRight = new Vector2(6.5f, 2f);
+    public static Vector2 playAreaLowerLeft = new Vector2(-6.65f, -5f);
+    public static Vector2 playAreaUpperRight = new Vector2(6.65f, 2f);
     public static float BattlerHalfWidth = 0.25f;
     public static float tooCloseSqrMag = 0.25f;
 
