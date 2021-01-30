@@ -21,6 +21,7 @@ public class Runner_GameScene : MonoBehaviour
 
     [SerializeField] Battler templateBattler;
     [SerializeField] Melee templateMelee;
+    [SerializeField] Stock templateStock;
 
     public static int numStartingShortAIs = 10;
     public static int numStartingLongAIs = 10;
@@ -28,6 +29,8 @@ public class Runner_GameScene : MonoBehaviour
     // Player is included
     public List<Battler> shorts;
     public List<Battler> longs;
+
+    [SerializeField] GameObject folderBattlers;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +51,7 @@ public class Runner_GameScene : MonoBehaviour
 
     Battler InstantiateBattler(Faction faction, bool isAI) {
         var battler = Instantiate(templateBattler);
+        battler.gameObject.transform.SetParent(folderBattlers.transform);
         if (isAI) {
             battler.bodyGraphic.color = (faction == Faction.Shorts) ? colorShort : colorLong;
         } else {
@@ -135,5 +139,12 @@ public class Runner_GameScene : MonoBehaviour
         newMelee.bodyGraphic.color = (faction == Faction.Shorts) ? colorMeleeShort : colorMeleeLong;
         newMelee.faction = faction;
         return newMelee;
+    }
+
+    public Stock InstantiateStock(Vector2 location) {
+        Debug.Log("Stock instantiated");
+        // TODO: We need to know how much the stock is worth.
+        var newStock = Instantiate(templateStock, location, Quaternion.identity);
+        return newStock;
     }
 }

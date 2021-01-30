@@ -168,9 +168,24 @@ public class Battler : MonoBehaviour
                 if (IsAlive) {
                     // No stunlock
                     if (!IsStunned()) {
-                        Debug.Log("Ouch! "+ Time.time);
-                        //TODO: Take damage
+                        //Debug.Log("Ouch! "+ Time.time);
                         SetStunned();
+                        //TODO: Take damage
+                        runner.InstantiateStock(maybeMelee.transform.position);
+                    }
+                }
+            }
+        }
+
+        var maybeStock = other.gameObject.GetComponentInParent<Stock>();
+        if (maybeStock != null) {
+            // Dead things don't collide
+            if (IsAlive) {
+                // Stunned things don't pick up Stock
+                if (!IsStunned()) {
+                    if (maybeStock.isCollectable) {
+                        // TODO: Credit the player with stock
+                        Destroy(maybeStock.gameObject);
                     }
                 }
             }
