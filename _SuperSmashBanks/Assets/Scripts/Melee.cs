@@ -23,7 +23,6 @@ public class Melee : MonoBehaviour
 
     }
 
-//    void OnTriggerEnter2D(Collider2D other)
     void OnTriggerStay2D(Collider2D other)
     {
         //Debug.LogFormat($"We ({name}) collided with a {other.name}");
@@ -35,8 +34,8 @@ public class Melee : MonoBehaviour
                 if (maybeBattler.IsAlive) {
                     // No stunlock
                     if (!maybeBattler.IsStunned()) {
+                        //Debug.Log("Haha, take that! "+ Time.time);
                         //TODO: Damage the battler
-                        Debug.Log("Haha, take that! "+ Time.time);
                         maybeBattler.SetStunned();
                     }
                 }

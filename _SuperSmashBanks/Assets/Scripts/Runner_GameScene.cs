@@ -65,7 +65,13 @@ public class Runner_GameScene : MonoBehaviour
                 throw new System.Exception($"Unhandled faction {faction}");
         }
         battler.isAI = isAI;
-        battler.isPlayerMovementAllowed = !isAI;
+        battler.isBattlerActive = isAI;
+        // TODO: The player shouldn't start active. but for dev testing he will
+        battler.isBattlerActive = true;
+
+        if (isAI) {
+            battler.InitAndStartAIAttacking();
+        }
 
         // TODO: We could use a singleton pattern
 
@@ -126,6 +132,7 @@ public class Runner_GameScene : MonoBehaviour
     public Melee InstantiateMelee(Vector2 location, Faction faction) {
         var newMelee = Instantiate(templateMelee, location, Quaternion.identity);
         newMelee.bodyGraphic.color = (faction == Faction.Shorts) ? colorMeleeShort : colorMeleeLong;
+        newMelee.faction = faction;
         return newMelee;
     }
 }
