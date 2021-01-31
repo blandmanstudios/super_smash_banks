@@ -116,6 +116,10 @@ public class UIController : MonoBehaviour
         hudRightPanelTMPro.text = "<color=#268bd2>Press A to join the Azure team</color>\n<color=#ff0000>Press D to join the reD team</color>";
     }
 
+    public void SetRightPanelToGetOutInstructions() {
+        hudRightPanelTMPro.text = "Press G to exit and claim your gains (or losses)";
+    }
+
     public void SetRightPanelToNoninstructions() {
         hudRightPanelTMPro.text = "";
     }

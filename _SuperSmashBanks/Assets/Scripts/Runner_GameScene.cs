@@ -267,7 +267,7 @@ public class Runner_GameScene : MonoBehaviour
             uiController.SetRightPanelToJoinInstructions();
             uiController.UpdatePlayerStatsDisplay(null);
         } else {
-            uiController.SetRightPanelToNoninstructions();
+            uiController.SetRightPanelToGetOutInstructions();
         }
     }
 }
