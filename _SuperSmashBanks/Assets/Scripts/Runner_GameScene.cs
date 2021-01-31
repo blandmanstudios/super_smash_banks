@@ -47,6 +47,8 @@ public class Runner_GameScene : MonoBehaviour
     public UIController uiController;
     [SerializeField] GameObject folderBattlers;
 
+    [SerializeField] SoundMgr soundMgr;
+
     // Don't set this directly. Use the setting function.
     bool waitingForPlayerEntry;
 
@@ -100,7 +102,9 @@ public class Runner_GameScene : MonoBehaviour
         InstantiateFactionAIs(Faction.Shorts, numStartingShortAIs);
         InstantiateFactionAIs(Faction.Longs, numStartingLongAIs);
         SetWaitingForPlayerEntry(true);
-    }
+
+        soundMgr.soundGameStart.Play();
+     }
 
     void CleanUpAfterPlay() {
         DestroyBattlersInList(shorts);

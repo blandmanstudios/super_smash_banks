@@ -56,15 +56,15 @@ public class CharSpriteMgr : MonoBehaviour
     void Update()
     {
         var mod = Time.time % timeForFullCycle;
-        Debug.Log($"mod: {mod}");
+        //Debug.Log($"mod: {mod}");
         for (int i=animCycle.Count-1; i>0; i--) {
             if(i*timeInEachState <= mod && mod < (i+1)*timeInEachState) {
                 animState = animCycle[i];
-                Debug.Log($"animState: {animState}");
+                //Debug.Log($"animState: {animState}");
                 return;
             }
         }
         animState = animCycle[0];
-        Debug.Log($"animState: {animState}");
+        //Debug.Log($"animState: {animState}");
     }
 }
