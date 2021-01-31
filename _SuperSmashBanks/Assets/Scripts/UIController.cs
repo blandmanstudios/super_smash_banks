@@ -6,15 +6,15 @@ using TMPro;
 
 public class UIController : MonoBehaviour
 {
-    public Image panelImage;
-    public Image leftPanelImage;
-    public TextMeshProUGUI leftPanelTMPro;
-    public Image upperCenterPanelImage;
-    public TextMeshProUGUI upperCenterPanelTMPro;
-    public Image lowerCenterPanelImage;
-    public Image trendlineImage;
-    public Image rightPanelImage;
-    public TextMeshProUGUI rightPanelTMPro;
+    public Image hudPanelImage;
+    public Image hudLeftPanelImage;
+    public TextMeshProUGUI hudLeftPanelTMPro;
+    public Image hudUpperCenterPanelImage;
+    public TextMeshProUGUI hudUpperCenterPanelTMPro;
+    public Image hudLowerCenterPanelImage;
+    public Image hudTrendlineImage;
+    public Image hudRightPanelImage;
+    public TextMeshProUGUI hudRightPanelTMPro;
 
     Color colorHudText = new Color32(0,255,0,255);
     Color colorHudBackground = new Color32(0,0,0,255);
@@ -33,20 +33,20 @@ public class UIController : MonoBehaviour
     }
 
     void SetHud() {
-        panelImage.color = colorHudBackground;
-        leftPanelTMPro.color = upperCenterPanelTMPro.color = rightPanelTMPro.color = colorHudText;
-        leftPanelImage.color = upperCenterPanelImage.color = lowerCenterPanelImage.color = rightPanelImage.color = colorInvisible;
+        hudPanelImage.color = colorHudBackground;
+        hudLeftPanelTMPro.color = hudUpperCenterPanelTMPro.color = hudRightPanelTMPro.color = colorHudText;
+        hudLeftPanelImage.color = hudUpperCenterPanelImage.color = hudLowerCenterPanelImage.color = hudRightPanelImage.color = colorInvisible;
     }
 
     public void UpdateStockPriceDisplay() {
         var stockPriceFiniteDecimalPlaces = Runner_GameScene.StockPrice.ToString("F2");
-        upperCenterPanelTMPro.text = $"Stock Price\n{stockPriceFiniteDecimalPlaces}";
+        hudUpperCenterPanelTMPro.text = $"Stock Price\n{stockPriceFiniteDecimalPlaces}";
     }
 
     public void UpdatePlayerStatsDisplay(Battler battler) {
         // Assumption: Only the player's battler will be passed in.
         var netWorthFiniteDecimalPlaces = string.Format("{0:n0}", battler.netWorth);
         var stockFiniteDecimalPlaces = string.Format("{0:n2}", battler.Shares);
-        leftPanelTMPro.text = $"Net Worth($)\n{netWorthFiniteDecimalPlaces}\nShares\n{stockFiniteDecimalPlaces}";
+        hudLeftPanelTMPro.text = $"Net Worth($)\n{netWorthFiniteDecimalPlaces}\nShares\n{stockFiniteDecimalPlaces}";
     }
 }
