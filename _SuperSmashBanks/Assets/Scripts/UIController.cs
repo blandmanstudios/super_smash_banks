@@ -16,14 +16,24 @@ public class UIController : MonoBehaviour
     public Image hudRightPanelImage;
     public TextMeshProUGUI hudRightPanelTMPro;
 
+    public GameObject youLosePanel;
+    public Image youLosePanelImage;
+    public Image youLoseTextPanelImage;
+    public TextMeshProUGUI youLoseTextPanelTMPro;
+
     Color colorHudText = new Color32(0,255,0,255);
     Color colorHudBackground = new Color32(0,0,0,255);
     Color colorInvisible = new Color32(255,255,255,0);
+
+    Color colorYouLoseMostText = new Color32(255,0,0,255);
+    // Note: The Play Again line will have hardcoded color.
+    Color colorYouLoseBackground = new Color32(0, 43, 54, 255);
 
     // Start is called before the first frame update
     void Start()
     {
         SetHud();
+        SetUpYouLosePanel();
     }
 
     // Update is called once per frame
@@ -36,6 +46,17 @@ public class UIController : MonoBehaviour
         hudPanelImage.color = colorHudBackground;
         hudLeftPanelTMPro.color = hudUpperCenterPanelTMPro.color = hudRightPanelTMPro.color = colorHudText;
         hudLeftPanelImage.color = hudUpperCenterPanelImage.color = hudLowerCenterPanelImage.color = hudRightPanelImage.color = colorInvisible;
+    }
+
+    void SetUpYouLosePanel() {
+        youLosePanelImage.color = colorYouLoseBackground;
+        youLoseTextPanelImage.color = colorInvisible;
+        youLoseTextPanelTMPro.color = colorYouLoseMostText;
+        youLoseTextPanelTMPro.text = "You are <b>BANKRUPT</b>!\nYou <b>FAIL</b> at finance!\nGo play video games and not the stock market!\n\n<b><color=#268bd2>Press P to play again</color></b>";
+    }
+
+    public void ShowYouLosePanel(bool show) {
+        youLosePanel.SetActive(show);
     }
 
     public void UpdateStockPriceDisplay() {

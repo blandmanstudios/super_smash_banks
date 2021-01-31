@@ -48,6 +48,8 @@ public class Runner_GameScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        uiController.ShowYouLosePanel(false);
+
         // Must happen before battlers are created
         stockPrice = openingStockPrice;
 

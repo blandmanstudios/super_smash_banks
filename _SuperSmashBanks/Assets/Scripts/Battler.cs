@@ -224,6 +224,7 @@ public class Battler : MonoBehaviour
     public void Die() {
         if (!isAI) {
             runner.uiController.UpdatePlayerStatsDisplay(this);
+            runner.uiController.ShowYouLosePanel(true);
         }
         Destroy(gameObject);
     }
