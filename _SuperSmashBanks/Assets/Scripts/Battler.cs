@@ -191,8 +191,10 @@ public class Battler : MonoBehaviour
                 attackLocation = (Vector2)transform.position + rb.velocity.normalized * 1;
 
             } else {
-                // TODO: Improve player attack location
-                attackLocation = transform.position;
+                var facingAngleDeg = graphicsObject.transform.eulerAngles.z + 90;
+                var facingAngleRad = facingAngleDeg * Mathf.Deg2Rad;
+                var facingVector = new Vector2((float)Mathf.Cos(facingAngleRad), (float)Mathf.Sin(facingAngleRad));
+                attackLocation = (Vector2)transform.position + facingVector.normalized * 1;
             }
             runner.InstantiateMelee(attackLocation, faction);
         }
