@@ -100,10 +100,16 @@ public class UIController : MonoBehaviour
     }
 
     public void UpdatePlayerStatsDisplay(Battler battler) {
-        // Assumption: Only the player's battler will be passed in.
-        var netWorthFiniteDecimalPlaces = string.Format("{0:n0}", battler.netWorth);
-        var stockFiniteDecimalPlaces = string.Format("{0:n2}", battler.Shares);
-        hudLeftPanelTMPro.text = $"Net Worth($)\n{netWorthFiniteDecimalPlaces}\nShares\n{stockFiniteDecimalPlaces}";
+        if (battler == null) {
+            var netWorthFiniteDecimalPlaces = string.Format("{0:n0}", Battler.initialNetWorth);
+            hudLeftPanelTMPro.text = $"Net Worth($)\n{netWorthFiniteDecimalPlaces}\nShares\nTBD";
+        } else {
+            // Assumption: Only the player's battler will be passed in,
+            // not any other battlers.
+            var netWorthFiniteDecimalPlaces = string.Format("{0:n0}", battler.netWorth);
+            var stockFiniteDecimalPlaces = string.Format("{0:n2}", battler.Shares);
+            hudLeftPanelTMPro.text = $"Net Worth($)\n{netWorthFiniteDecimalPlaces}\nShares\n{stockFiniteDecimalPlaces}";
+        }
     }
 
     public void SetRightPanelToInstructions() {
