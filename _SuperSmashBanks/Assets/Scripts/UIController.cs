@@ -105,4 +105,12 @@ public class UIController : MonoBehaviour
         var stockFiniteDecimalPlaces = string.Format("{0:n2}", battler.Shares);
         hudLeftPanelTMPro.text = $"Net Worth($)\n{netWorthFiniteDecimalPlaces}\nShares\n{stockFiniteDecimalPlaces}";
     }
+
+    public void SetRightPanelToInstructions() {
+        hudRightPanelTMPro.text = "<color=#0000ff>Press A to join the Azure team</color>\n<color=#ff0000>Press D to join the reD team</color>\n";
+    }
+
+    public void SetRightPanelToNoninstructions() {
+        hudRightPanelTMPro.text = "";
+    }
 }

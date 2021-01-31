@@ -45,6 +45,9 @@ public class Runner_GameScene : MonoBehaviour
     public UIController uiController;
     [SerializeField] GameObject folderBattlers;
 
+    // Don't set this directly. Use the setting function.
+    bool waitingForPlayerEntry;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,6 +70,16 @@ public class Runner_GameScene : MonoBehaviour
             CleanUpAfterPlay();
             DoBeforeEachPlay();
         }
+
+        if (waitingForPlayerEntry) {
+            if (Input.GetKeyDown(KeyCode.A)) {
+                SetWaitingForPlayerEntry(false);
+                InstantiateBattler(Faction.Shorts, false);
+            } else if (Input.GetKeyDown(KeyCode.D)) {
+                SetWaitingForPlayerEntry(false);
+                InstantiateBattler(Faction.Longs, false);
+            }
+        }
     }
 
     void DoOncePerSession() {
@@ -84,8 +97,7 @@ public class Runner_GameScene : MonoBehaviour
         longs = new List<Battler>();
         InstantiateFactionAIs(Faction.Shorts, numStartingShortAIs);
         InstantiateFactionAIs(Faction.Longs, numStartingLongAIs);
-        // TODO: Player gets to pick which side to join and when
-        InstantiateBattler(Faction.Shorts, false);
+        SetWaitingForPlayerEntry(true);
     }
 
     void CleanUpAfterPlay() {
@@ -220,6 +232,15 @@ public class Runner_GameScene : MonoBehaviour
             return dollars;
         } else {
             throw new System.Exception("Tried to calculate SharesToDollars() with stockPrice of 0");
+        }
+    }
+
+    void SetWaitingForPlayerEntry(bool value) {
+        waitingForPlayerEntry = value;
+        if (waitingForPlayerEntry) {
+            uiController.SetRightPanelToInstructions();
+        } else {
+            uiController.SetRightPanelToNoninstructions();
         }
     }
 }
