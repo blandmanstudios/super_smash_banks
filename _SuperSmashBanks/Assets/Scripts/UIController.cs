@@ -113,7 +113,7 @@ public class UIController : MonoBehaviour
     }
 
     public void SetRightPanelToJoinInstructions() {
-        hudRightPanelTMPro.text = "<color=#268bd2>Press A to join the Azure team</color>\n<color=#ff0000>Press D to join the reD team</color>\n";
+        hudRightPanelTMPro.text = "<color=#268bd2>Press A to join the Azure team</color>\n<color=#ff0000>Press D to join the reD team</color>";
     }
 
     public void SetRightPanelToNoninstructions() {
