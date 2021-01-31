@@ -169,4 +169,22 @@ public class Runner_GameScene : MonoBehaviour
     private void PickAndSetNewStockPrice() {
         stockPrice = Random.Range(stockPriceFloor, stockPriceCeiling);
     }
+
+    public static float DollarsToShares(float dollars) {
+        if (stockPrice != 0) {
+            var shares = dollars / stockPrice;
+            return shares;
+        } else {
+            throw new System.Exception("Tried to calculate DollarsToShares() with stockPrice of 0");
+        }
+    }
+
+    public static float SharesToDollars(float shares) {
+        if (stockPrice != 0) {
+            var dollars = shares * stockPrice;
+            return dollars;
+        } else {
+            throw new System.Exception("Tried to calculate SharesToDollars() with stockPrice of 0");
+        }
+    }
 }

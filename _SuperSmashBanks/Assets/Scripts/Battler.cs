@@ -8,7 +8,7 @@ public class Battler : MonoBehaviour
 
     private float stock;
     public float Stock => stock;
-    public float netWorth => stock * Runner_GameScene.StockPrice;
+    public float netWorth => Runner_GameScene.SharesToDollars(stock);
 
     public SpriteRenderer bodyGraphic;
     public Faction faction;
