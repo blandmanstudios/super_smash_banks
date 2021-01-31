@@ -47,7 +47,7 @@ public class Runner_GameScene : MonoBehaviour
     public UIController uiController;
     [SerializeField] GameObject folderBattlers;
 
-    [SerializeField] SoundMgr soundMgr;
+    public SoundMgr soundMgr;
 
     // Don't set this directly. Use the setting function.
     bool waitingForPlayerEntry;
