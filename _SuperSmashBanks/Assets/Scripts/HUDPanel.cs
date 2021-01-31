@@ -45,8 +45,8 @@ public class HUDPanel : MonoBehaviour
 
     public void UpdatePlayerStatsDisplay(Battler battler) {
         // Assumption: Only the player's battler will be passed in.
-        var netWorthFiniteDecimalPlaces = battler.netWorth.ToString("F0");
-        var stockFiniteDecimalPlaces = battler.Stock.ToString("F2");
+        var netWorthFiniteDecimalPlaces = string.Format("{0:n0}", battler.netWorth);
+        var stockFiniteDecimalPlaces = string.Format("{0:n2}", battler.Stock);
         leftPanelTMPro.text = $"Net Worth($)\n{netWorthFiniteDecimalPlaces}\nShares\n{stockFiniteDecimalPlaces}";
     }
 }
