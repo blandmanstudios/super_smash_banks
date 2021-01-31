@@ -12,8 +12,8 @@ public class Runner_GameScene : MonoBehaviour
     public static float BattlerHalfWidth = 0.25f;
     public static float tooCloseSqrMag = 0.25f;
 
-    private float openingStockPrice = 500f;
-    private float stockPriceFloor = 0.01f;
+    private float openingStockPrice = 550f;
+    private float stockPriceFloor = 100f;
     private float stockPriceCeiling = 999.99f;
     private float previousStockPrice;
     private static float stockPrice;
