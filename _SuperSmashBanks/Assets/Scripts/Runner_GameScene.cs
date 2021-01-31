@@ -15,6 +15,7 @@ public class Runner_GameScene : MonoBehaviour
     private float openingStockPrice = 500f;
     private float stockPriceFloor = 0.01f;
     private float stockPriceCeiling = 999.99f;
+    private float previousStockPrice;
     private static float stockPrice;
     public static float StockPrice => stockPrice;
 
@@ -101,6 +102,7 @@ public class Runner_GameScene : MonoBehaviour
 
         // Must happen before battlers are created
         stockPrice = openingStockPrice;
+        previousStockPrice = openingStockPrice;
 
         shorts = new List<Battler>();
         longs = new List<Battler>();
@@ -231,7 +233,14 @@ public class Runner_GameScene : MonoBehaviour
     }
 
     private void PickAndSetNewStockPrice() {
+        previousStockPrice = stockPrice;
         stockPrice = Random.Range(stockPriceFloor, stockPriceCeiling);
+        if (stockPrice > previousStockPrice) {
+            soundMgr.soundStockPriceUp.Play();
+        } else if (stockPrice < previousStockPrice) {
+            // Can't just use Else because they could be equal 
+            soundMgr.soundStockPriceDown.Play();
+        }
     }
 
     public static float DollarsToShares(float dollars) {
