@@ -291,6 +291,7 @@ public class Battler : MonoBehaviour
         if (!isAI) {
             runner.uiController.UpdatePlayerStatsDisplay(this);
             runner.uiController.ShowYouLosePanel(true);
+            runner.soundMgr.soundBadGameOver.Play();
         }
         switch (faction) {
             case Faction.Shorts:
