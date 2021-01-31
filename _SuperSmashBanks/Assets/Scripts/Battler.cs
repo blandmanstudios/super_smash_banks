@@ -226,6 +226,16 @@ public class Battler : MonoBehaviour
             runner.uiController.UpdatePlayerStatsDisplay(this);
             runner.uiController.ShowYouLosePanel(true);
         }
+        switch (faction) {
+            case Faction.Shorts:
+                runner.shorts.Remove(this);
+                break;
+            case Faction.Longs:
+                runner.longs.Remove(this);
+                break;
+            default:
+                throw new System.Exception($"Unknown faction {faction}");
+        }
         Destroy(gameObject);
     }
 

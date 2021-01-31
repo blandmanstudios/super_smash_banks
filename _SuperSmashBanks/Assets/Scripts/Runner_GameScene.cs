@@ -48,6 +48,32 @@ public class Runner_GameScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DoOncePerSession();
+        DoBeforeEachPlay();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (timeStockPriceLastSet + timeBetweenPriceUpdates < Time.time) {
+            if (isStockPriceVariable) {
+                PickAndSetNewStockPrice();
+            }
+            uiController.UpdateStockPriceDisplay();
+            timeStockPriceLastSet = Time.time;
+        }
+
+        if (Input.GetKeyDown(KeyCode.P)) {
+            CleanUpAfterPlay();
+            DoBeforeEachPlay();
+        }
+    }
+
+    void DoOncePerSession() {
+
+    }
+
+    void DoBeforeEachPlay() {
         uiController.ShowYouLosePanel(false);
 
         // Must happen before battlers are created
@@ -61,15 +87,16 @@ public class Runner_GameScene : MonoBehaviour
         InstantiateBattler(Faction.Shorts, false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (timeStockPriceLastSet + timeBetweenPriceUpdates < Time.time) {
-            if (isStockPriceVariable) {
-                PickAndSetNewStockPrice();
-            }
-            uiController.UpdateStockPriceDisplay();
-            timeStockPriceLastSet = Time.time;
+    void CleanUpAfterPlay() {
+        DestroyBattlersInList(shorts);
+        DestroyBattlersInList(longs);
+    }
+
+    void DestroyBattlersInList(List<Battler> battlers) {
+        for(int i=battlers.Count - 1; i>=0; i--) {
+            var currentBattler = battlers[i];
+            battlers.RemoveAt(i);
+            Destroy(currentBattler.gameObject);
         }
     }
 
