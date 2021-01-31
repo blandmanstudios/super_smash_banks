@@ -264,7 +264,7 @@ public class Runner_GameScene : MonoBehaviour
     void SetWaitingForPlayerEntry(bool value) {
         waitingForPlayerEntry = value;
         if (waitingForPlayerEntry) {
-            uiController.SetRightPanelToInstructions();
+            uiController.SetRightPanelToJoinInstructions();
             uiController.UpdatePlayerStatsDisplay(null);
         } else {
             uiController.SetRightPanelToNoninstructions();
