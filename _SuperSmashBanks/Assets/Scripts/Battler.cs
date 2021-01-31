@@ -186,16 +186,11 @@ public class Battler : MonoBehaviour
     public void Attack() {
         if ((Time.time - lastUsedMelee) > cooldownMelee) {
             lastUsedMelee = Time.time;
-            Vector2 attackLocation;
-            if (isAI) {
-                attackLocation = (Vector2)transform.position + rb.velocity.normalized * 1;
-
-            } else {
-                var facingAngleDeg = graphicsObject.transform.eulerAngles.z + 90;
-                var facingAngleRad = facingAngleDeg * Mathf.Deg2Rad;
-                var facingVector = new Vector2((float)Mathf.Cos(facingAngleRad), (float)Mathf.Sin(facingAngleRad));
-                attackLocation = (Vector2)transform.position + facingVector.normalized * 1;
-            }
+            var facingAngleDeg = graphicsObject.transform.eulerAngles.z + 90;
+            var attackAngleDeg = facingAngleDeg - 20;
+            var attackAngleRad = attackAngleDeg * Mathf.Deg2Rad;
+            var attackVector = new Vector2((float)Mathf.Cos(attackAngleRad), (float)Mathf.Sin(attackAngleRad));
+            var attackLocation = (Vector2)transform.position + attackVector.normalized * 1;
             runner.InstantiateMelee(attackLocation, faction);
         }
     }
