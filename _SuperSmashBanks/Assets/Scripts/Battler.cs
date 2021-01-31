@@ -256,6 +256,11 @@ public class Battler : MonoBehaviour
                 // Stunned things don't pick up Stock
                 if (!IsStunned()) {
                     if (maybeStock.isCollectable) {
+                        if (isAI) {
+                            runner.soundMgr.soundAiAcquiresStock.Play();
+                        } else {
+                            runner.soundMgr.soundPlayerAcquiresStock.Play();
+                        }
                         shares += maybeStock.quantity;
                         Destroy(maybeStock.gameObject);
                     }
