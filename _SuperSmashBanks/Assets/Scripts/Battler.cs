@@ -154,7 +154,6 @@ public class Battler : MonoBehaviour
     }
 
     public void DoAIFacing() {
-        Vector2 dir = rb.velocity;
         var angle = Vector2.SignedAngle(Vector2.right, rb.velocity);
         graphicsObject.transform.eulerAngles = new Vector3(0,0,angle - 90);
     }
