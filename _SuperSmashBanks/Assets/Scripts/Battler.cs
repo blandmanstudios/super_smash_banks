@@ -146,7 +146,7 @@ public class Battler : MonoBehaviour
     }
 
     public void InitStartingValues() {
-        stock = initialNetWorth / Runner_GameScene.StockPrice;
+        stock = Runner_GameScene.DollarsToShares(initialNetWorth);
     }
 
     public void InitAndStartAIMovement() {
