@@ -187,7 +187,7 @@ public class Battler : MonoBehaviour
                         //Debug.Log("Ouch! "+ Time.time);
                         SetStunned();
                         //TODO: Take damage
-                        runner.InstantiateStock(maybeMelee.transform.position);
+                        runner.InstantiateStock(transform.position);
                     }
                 }
             }
