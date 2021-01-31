@@ -158,6 +158,7 @@ MonoBehaviour:
     type: 3}
   shorts: []
   longs: []
+  hud: {fileID: 2146683344}
   folderBattlers: {fileID: 1748101059}
 --- !u!4 &60110437
 Transform:

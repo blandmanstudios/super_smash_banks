@@ -9,6 +9,15 @@ public class Runner_GameScene : MonoBehaviour
     public static float BattlerHalfWidth = 0.25f;
     public static float tooCloseSqrMag = 0.25f;
 
+    private float openingStockPrice = 200f;
+    private float stockPriceFloor = 0.01f;
+    private float stockPriceCeiling = 999.99f;
+    private static float stockPrice;
+    public static float StockPrice => stockPrice;
+
+    float timeStockPriceLastSet = float.MinValue;
+    float timeBetweenPriceUpdates = 1f;
+
     public static float playerMoveSpeed = 4f;
     public static float aiMoveSpeed = 3.5f;
 
@@ -30,6 +39,7 @@ public class Runner_GameScene : MonoBehaviour
     public List<Battler> shorts;
     public List<Battler> longs;
 
+    [SerializeField] HUDPanel hud;
     [SerializeField] GameObject folderBattlers;
 
     // Start is called before the first frame update
@@ -106,7 +116,11 @@ public class Runner_GameScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (timeStockPriceLastSet + timeBetweenPriceUpdates < Time.time) {
+            PickAndSetNewStockPrice();
+            hud.UpdateHud();
+            timeStockPriceLastSet = Time.time;
+        }
     }
 
     public Vector2 PickCandidateSpawnLocation() {
@@ -146,5 +160,9 @@ public class Runner_GameScene : MonoBehaviour
         // TODO: We need to know how much the stock is worth.
         var newStock = Instantiate(templateStock, location, Quaternion.identity);
         return newStock;
+    }
+
+    private void PickAndSetNewStockPrice() {
+        stockPrice = Random.Range(stockPriceFloor, stockPriceCeiling);
     }
 }

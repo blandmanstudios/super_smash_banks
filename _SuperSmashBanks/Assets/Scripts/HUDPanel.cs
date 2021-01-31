@@ -38,4 +38,8 @@ public class HUDPanel : MonoBehaviour
         leftPanelImage.color = upperCenterPanelImage.color = lowerCenterPanelImage.color = rightPanelImage.color = colorInvisible;
     }
 
+    public void UpdateHud() {
+        var stockPriceFiniteDecimalPlaces = Runner_GameScene.StockPrice.ToString("F2");
+        upperCenterPanelTMPro.text = $"Stock Price\n{stockPriceFiniteDecimalPlaces}";
+    }
 }
