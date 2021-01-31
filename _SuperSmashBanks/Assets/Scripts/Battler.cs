@@ -187,10 +187,10 @@ public class Battler : MonoBehaviour
         if ((Time.time - lastUsedMelee) > cooldownMelee) {
             lastUsedMelee = Time.time;
             var facingAngleDeg = graphicsObject.transform.eulerAngles.z + 90;
-            var attackAngleDeg = facingAngleDeg - 20;
+            var attackAngleDeg = facingAngleDeg - 13;
             var attackAngleRad = attackAngleDeg * Mathf.Deg2Rad;
             var attackVector = new Vector2((float)Mathf.Cos(attackAngleRad), (float)Mathf.Sin(attackAngleRad));
-            var attackLocation = (Vector2)transform.position + attackVector.normalized * 1;
+            var attackLocation = (Vector2)transform.position + attackVector.normalized * 1.5f;
             runner.InstantiateMelee(attackLocation, faction);
         }
     }
