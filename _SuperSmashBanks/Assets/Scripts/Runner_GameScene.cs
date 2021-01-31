@@ -219,6 +219,7 @@ public class Runner_GameScene : MonoBehaviour
         var newMelee = Instantiate(templateMelee, location, Quaternion.identity);
         newMelee.bodyGraphic.color = (faction == Faction.Shorts) ? colorMeleeShort : colorMeleeLong;
         newMelee.faction = faction;
+        soundMgr.soundAnyCharacterAttacks.Play();
         return newMelee;
     }
 
