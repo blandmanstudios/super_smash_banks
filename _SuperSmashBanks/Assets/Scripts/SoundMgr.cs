@@ -5,6 +5,7 @@ using UnityEngine;
 public class SoundMgr : MonoBehaviour
 {
     public AudioSource audioSource;
+    public bool isImportantSoundPlaying;
 
     [SerializeField] AudioClip gameStart;
     [SerializeField] AudioClip playerEntersTheFray;
@@ -70,6 +71,7 @@ public class SoundMgr : MonoBehaviour
 
     public void Stop() {
         audioSource.Stop();
+        isImportantSoundPlaying = false;
     }
 
     public Sound PickAiHurtSound() {

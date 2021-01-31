@@ -17,11 +17,14 @@ public class Sound
     public void Play() {
         //Debug.Log("Play was called");
         if (shouldOneShot) {
-            soundMgr.audioSource.PlayOneShot(audioClip);
+            if (!soundMgr.isImportantSoundPlaying) {
+                soundMgr.audioSource.PlayOneShot(audioClip);
+            }
         } else {
             //soundMgr.audioSource.Stop();
             soundMgr.audioSource.clip = audioClip;
             soundMgr.audioSource.Play();
+            soundMgr.isImportantSoundPlaying = true;
         }
     }
 }
