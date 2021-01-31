@@ -6,20 +6,20 @@ public class SoundMgr : MonoBehaviour
 {
     public AudioSource audioSource;
 
-    public AudioClip gameStart;
-    public AudioClip playerEntersTheFray;
-    public AudioClip playerAcquiresStock;
-    public AudioClip runningOutOfTimeToJoin;
-    public AudioClip anyCharacterAttacks;
-    public AudioClip stockPriceUp;
-    public AudioClip stockPriceDown;
-    public AudioClip badGameOver;
-    public AudioClip aiAcquiresStock;
-    public AudioClip aiHurt1;
-    public AudioClip aiHurt2;
-    public AudioClip aiHurt3;
-    public AudioClip goodGameOver;
-    public AudioClip playerHurt;
+    [SerializeField] AudioClip gameStart;
+    [SerializeField] AudioClip playerEntersTheFray;
+    [SerializeField] AudioClip playerAcquiresStock;
+    [SerializeField] AudioClip runningOutOfTimeToJoin;
+    [SerializeField] AudioClip anyCharacterAttacks;
+    [SerializeField] AudioClip stockPriceUp;
+    [SerializeField] AudioClip stockPriceDown;
+    [SerializeField] AudioClip badGameOver;
+    [SerializeField] AudioClip aiAcquiresStock;
+    [SerializeField] AudioClip aiHurt1;
+    [SerializeField] AudioClip aiHurt2;
+    [SerializeField] AudioClip aiHurt3;
+    [SerializeField] AudioClip goodGameOver;
+    [SerializeField] AudioClip playerHurt;
 
     public Sound soundGameStart;
     public Sound soundPlayerEntersTheFray;
