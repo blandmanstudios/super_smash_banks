@@ -125,13 +125,13 @@ public class Runner_GameScene : MonoBehaviour
         var battler = Instantiate(templateBattler);
         battler.InitStartingValues();
         battler.gameObject.transform.SetParent(folderBattlers.transform);
-        /*
+        
         if (isAI) {
-            battler.bodyGraphic.color = (faction == Faction.Shorts) ? colorShort : colorLong;
+            //battler.bodyGraphic.color = (faction == Faction.Shorts) ? colorShort : colorLong;
         } else {
             battler.bodyGraphic.color = (faction == Faction.Shorts) ? colorPlayerShort : colorPlayerLong;
         }
-        */
+
         battler.faction = faction;
         switch (faction) {
             case Faction.Shorts:
