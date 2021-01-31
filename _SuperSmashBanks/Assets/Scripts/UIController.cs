@@ -118,7 +118,7 @@ public class UIController : MonoBehaviour
 
     public void SetRightPanelToJoinInstructions() {
         hudRightPanelStockCertificate.gameObject.SetActive(false);
-        hudRightPanelTMPro.text = "<b><color=#268bd2>Press A to join the Azure team</color>\n<color=#ff0000>Press D to join the reD team</color></b>";
+        hudRightPanelTMPro.text = "<b><color=#268bd2>Press A to join the blue team</color>\n<color=#ff0000>Press D to join the red team</color></b>";
     }
 
     public void SetRightPanelToGetOutInstructions() {
