@@ -81,7 +81,7 @@ public class Battler : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.G)) {
                         GetOut();
                     } else {
-                        DoPlayerMovement();
+                        DoPlayerMovementAndFacing();
                         DoPlayerAttacking();
                     }
                 }
@@ -109,7 +109,7 @@ public class Battler : MonoBehaviour
     }
 
     // Assumed: Battler is active and not stunned
-    public void DoPlayerMovement() {
+    public void DoPlayerMovementAndFacing() {
         float horizontalInput = Input.GetAxis("Horizontal");
         if(!Input.GetKey("left") && !Input.GetKey("a") && !Input.GetKey("right") && !Input.GetKey("d")) {
             horizontalInput = 0;
@@ -136,6 +136,13 @@ public class Battler : MonoBehaviour
             Runner_GameScene.playAreaUpperRight.y - Runner_GameScene.BattlerHalfWidth
         );
         transform.position = position;
+
+        // Player Facing
+        var playerVelocity = new Vector2(horizontalInput, verticalInput);
+        if (playerVelocity.sqrMagnitude > 0.0001) {
+            var angle = Vector2.SignedAngle(Vector2.right, playerVelocity);
+            graphicsObject.transform.eulerAngles = new Vector3(0,0,angle - 90);
+        }
     }
 
     // Assumed: Battler is active and not stunned
