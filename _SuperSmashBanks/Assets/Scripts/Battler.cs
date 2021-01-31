@@ -256,7 +256,6 @@ public class Battler : MonoBehaviour
                 // Stunned things don't pick up Stock
                 if (!IsStunned()) {
                     if (maybeStock.isCollectable) {
-                        // TODO: Credit the player with stock
                         shares += maybeStock.quantity;
                         Destroy(maybeStock.gameObject);
                     }
