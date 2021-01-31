@@ -231,7 +231,6 @@ public class Battler : MonoBehaviour
                     if (!IsStunned()) {
                         //Debug.Log("Ouch! "+ Time.time);
                         SetStunned();
-                        //TODO: Take damage
                         var newStock = runner.InstantiateStock(transform.position);
                         var idealSharesLost = Runner_GameScene.DollarsToShares(damageOnHit);
                         var actualSharesLost = Mathf.Min(idealSharesLost, shares);
