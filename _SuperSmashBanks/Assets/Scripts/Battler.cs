@@ -186,7 +186,15 @@ public class Battler : MonoBehaviour
     public void Attack() {
         if ((Time.time - lastUsedMelee) > cooldownMelee) {
             lastUsedMelee = Time.time;
-            runner.InstantiateMelee(transform.position, faction);
+            Vector2 attackLocation;
+            if (isAI) {
+                attackLocation = (Vector2)transform.position + rb.velocity.normalized * 1;
+
+            } else {
+                // TODO: Improve player attack location
+                attackLocation = transform.position;
+            }
+            runner.InstantiateMelee(attackLocation, faction);
         }
     }
 
