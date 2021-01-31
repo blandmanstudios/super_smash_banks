@@ -42,7 +42,7 @@ public class Runner_GameScene : MonoBehaviour
     public List<Battler> shorts;
     public List<Battler> longs;
 
-    public HUDPanel hud;
+    public UIController uiController;
     [SerializeField] GameObject folderBattlers;
 
     // Start is called before the first frame update
@@ -127,7 +127,7 @@ public class Runner_GameScene : MonoBehaviour
             if (isStockPriceVariable) {
                 PickAndSetNewStockPrice();
             }
-            hud.UpdateStockPriceDisplay();
+            uiController.UpdateStockPriceDisplay();
             timeStockPriceLastSet = Time.time;
         }
     }

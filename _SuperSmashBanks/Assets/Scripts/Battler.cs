@@ -7,9 +7,9 @@ public class Battler : MonoBehaviour
     public static float initialNetWorth = 1000000f;
     public static float damageOnHit     =  100000f;
 
-    private float stock;
-    public float Stock => stock;
-    public float netWorth => Runner_GameScene.SharesToDollars(stock);
+    private float shares;
+    public float Shares => shares;
+    public float netWorth => Runner_GameScene.SharesToDollars(shares);
 
     public SpriteRenderer bodyGraphic;
     public Faction faction;
@@ -72,7 +72,7 @@ public class Battler : MonoBehaviour
 
         // Reporting
         if (!isAI) {
-            runner.hud.UpdatePlayerStatsDisplay(this);
+            runner.uiController.UpdatePlayerStatsDisplay(this);
         }
     }
 
@@ -147,7 +147,7 @@ public class Battler : MonoBehaviour
     }
 
     public void InitStartingValues() {
-        stock = Runner_GameScene.DollarsToShares(initialNetWorth);
+        shares = Runner_GameScene.DollarsToShares(initialNetWorth);
     }
 
     public void InitAndStartAIMovement() {
@@ -190,14 +190,14 @@ public class Battler : MonoBehaviour
                         //TODO: Take damage
                         var newStock = runner.InstantiateStock(transform.position);
                         var idealSharesLost = Runner_GameScene.DollarsToShares(damageOnHit);
-                        var actualSharesLost = Mathf.Min(idealSharesLost, stock);
+                        var actualSharesLost = Mathf.Min(idealSharesLost, shares);
                         newStock.quantity = actualSharesLost;
                         if (idealSharesLost > actualSharesLost) {
-                            stock = 0;
+                            shares = 0;
                         } else {
-                            stock -= actualSharesLost;
+                            shares -= actualSharesLost;
                         }
-                        if (stock <= 0) {
+                        if (shares <= 0) {
                             Die();
                         }
                     }
@@ -213,7 +213,7 @@ public class Battler : MonoBehaviour
                 if (!IsStunned()) {
                     if (maybeStock.isCollectable) {
                         // TODO: Credit the player with stock
-                        stock += maybeStock.quantity;
+                        shares += maybeStock.quantity;
                         Destroy(maybeStock.gameObject);
                     }
                 }
@@ -223,7 +223,7 @@ public class Battler : MonoBehaviour
 
     public void Die() {
         if (!isAI) {
-            runner.hud.UpdatePlayerStatsDisplay(this);
+            runner.uiController.UpdatePlayerStatsDisplay(this);
         }
         Destroy(gameObject);
     }

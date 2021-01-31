@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class HUDPanel : MonoBehaviour
+public class UIController : MonoBehaviour
 {
     public Image panelImage;
     public Image leftPanelImage;
@@ -46,7 +46,7 @@ public class HUDPanel : MonoBehaviour
     public void UpdatePlayerStatsDisplay(Battler battler) {
         // Assumption: Only the player's battler will be passed in.
         var netWorthFiniteDecimalPlaces = string.Format("{0:n0}", battler.netWorth);
-        var stockFiniteDecimalPlaces = string.Format("{0:n2}", battler.Stock);
+        var stockFiniteDecimalPlaces = string.Format("{0:n2}", battler.Shares);
         leftPanelTMPro.text = $"Net Worth($)\n{netWorthFiniteDecimalPlaces}\nShares\n{stockFiniteDecimalPlaces}";
     }
 }
