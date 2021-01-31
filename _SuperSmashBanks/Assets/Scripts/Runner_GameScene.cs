@@ -207,7 +207,7 @@ public class Runner_GameScene : MonoBehaviour
     }
 
     public Stock InstantiateStock(Vector2 location) {
-        Debug.Log("Stock instantiated");
+        //Debug.Log("Stock instantiated");
         // TODO: We need to know how much the stock is worth.
         var newStock = Instantiate(templateStock, location, Quaternion.identity);
         return newStock;
