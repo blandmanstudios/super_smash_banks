@@ -15,6 +15,7 @@ public class UIController : MonoBehaviour
     public Image hudTrendlineImage;
     public Image hudRightPanelImage;
     public TextMeshProUGUI hudRightPanelTMPro;
+    public Image hudRightPanelStockCertificate;
 
     public GameObject youLosePanel;
     public Image youLosePanelImage;
@@ -113,15 +114,18 @@ public class UIController : MonoBehaviour
     }
 
     public void SetRightPanelToJoinInstructions() {
+        hudRightPanelStockCertificate.gameObject.SetActive(false);
         hudRightPanelTMPro.text = "<color=#268bd2>Press A to join the Azure team</color>\n<color=#ff0000>Press D to join the reD team</color>";
     }
 
     public void SetRightPanelToGetOutInstructions() {
+        hudRightPanelStockCertificate.gameObject.SetActive(false);
         hudRightPanelTMPro.text = "Press G to exit and claim your gains (or losses)";
     }
 
-    public void SetRightPanelToRestartinstructions() {
-        hudRightPanelTMPro.text = "Press P to play again";
+    public void SetRightPanelToStockCertificate() {
+        hudRightPanelStockCertificate.gameObject.SetActive(true);
+        hudRightPanelTMPro.text = "";
 
     }
 }
