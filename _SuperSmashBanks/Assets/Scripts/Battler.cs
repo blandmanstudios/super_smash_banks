@@ -5,6 +5,7 @@ using UnityEngine;
 public class Battler : MonoBehaviour
 {
     public static float initialNetWorth = 1000000f;
+    public static float damageOnHit     =  100000f;
 
     private float stock;
     public float Stock => stock;
@@ -187,7 +188,18 @@ public class Battler : MonoBehaviour
                         //Debug.Log("Ouch! "+ Time.time);
                         SetStunned();
                         //TODO: Take damage
-                        runner.InstantiateStock(transform.position);
+                        var newStock = runner.InstantiateStock(transform.position);
+                        var idealSharesLost = Runner_GameScene.DollarsToShares(damageOnHit);
+                        var actualSharesLost = Mathf.Min(idealSharesLost, stock);
+                        newStock.quantity = actualSharesLost;
+                        if (idealSharesLost > actualSharesLost) {
+                            stock = 0;
+                        } else {
+                            stock -= actualSharesLost;
+                        }
+                        if (stock <= 0) {
+                            Die();
+                        }
                     }
                 }
             }
@@ -201,10 +213,18 @@ public class Battler : MonoBehaviour
                 if (!IsStunned()) {
                     if (maybeStock.isCollectable) {
                         // TODO: Credit the player with stock
+                        stock += maybeStock.quantity;
                         Destroy(maybeStock.gameObject);
                     }
                 }
             }
         }
+    }
+
+    public void Die() {
+        if (!isAI) {
+            runner.hud.UpdatePlayerStatsDisplay(this);
+        }
+        Destroy(gameObject);
     }
 }

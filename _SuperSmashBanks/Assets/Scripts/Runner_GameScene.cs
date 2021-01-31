@@ -5,14 +5,14 @@ using UnityEngine;
 public class Runner_GameScene : MonoBehaviour
 {
     // Testing switches
-    private bool isStockPriceVariable = false;
+    private bool isStockPriceVariable = true;
 
     public static Vector2 playAreaLowerLeft = new Vector2(-6.65f, -5f);
     public static Vector2 playAreaUpperRight = new Vector2(6.65f, 2f);
     public static float BattlerHalfWidth = 0.25f;
     public static float tooCloseSqrMag = 0.25f;
 
-    private float openingStockPrice = 100f;
+    private float openingStockPrice = 500f;
     private float stockPriceFloor = 0.01f;
     private float stockPriceCeiling = 999.99f;
     private static float stockPrice;
