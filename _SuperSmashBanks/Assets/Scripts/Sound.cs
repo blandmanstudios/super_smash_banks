@@ -15,7 +15,7 @@ public class Sound
     }
 
     public void Play() {
-        Debug.Log("Play was called");
+        //Debug.Log("Play was called");
         if (shouldOneShot) {
             audioSource.PlayOneShot(audioClip);
         } else {
