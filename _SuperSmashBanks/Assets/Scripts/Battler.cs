@@ -277,7 +277,7 @@ public class Battler : MonoBehaviour
         if (!isAI) {
             runner.uiController.UpdatePlayerStatsDisplay(this);
             runner.uiController.ShowGotOutPanel(this.netWorth);
-            runner.uiController.SetRightPanelToNoninstructions();
+            runner.uiController.SetRightPanelToRestartinstructions();
             runner.soundMgr.soundGoodGameOver.Play();
             switch (faction) {
                 case Faction.Shorts:
@@ -297,7 +297,7 @@ public class Battler : MonoBehaviour
         if (!isAI) {
             runner.uiController.UpdatePlayerStatsDisplay(this);
             runner.uiController.ShowYouLosePanel(true);
-            runner.uiController.SetRightPanelToNoninstructions();
+            runner.uiController.SetRightPanelToRestartinstructions();
             runner.soundMgr.soundBadGameOver.Play();
         }
         switch (faction) {

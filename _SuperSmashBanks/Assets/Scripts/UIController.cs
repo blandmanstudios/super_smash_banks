@@ -120,7 +120,8 @@ public class UIController : MonoBehaviour
         hudRightPanelTMPro.text = "Press G to exit and claim your gains (or losses)";
     }
 
-    public void SetRightPanelToNoninstructions() {
-        hudRightPanelTMPro.text = "";
+    public void SetRightPanelToRestartinstructions() {
+        hudRightPanelTMPro.text = "Press P to play again";
+
     }
 }
