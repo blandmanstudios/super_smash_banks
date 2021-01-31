@@ -48,13 +48,13 @@ public class Battler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isAI) {
-            // Cheat - Bankrupt the player. For testing purposes only
-            if (Input.GetKeyDown(KeyCode.B)) {
-                shares = 0;
-                Die();
-            }
-        }
+        //if (!isAI) {
+        //    // Cheat - Bankrupt the player. For testing purposes only
+        //    if (Input.GetKeyDown(KeyCode.B)) {
+        //        shares = 0;
+        //        Die();
+        //    }
+        //}
 
         // Movement and attacking
         if (isBattlerActive) {
