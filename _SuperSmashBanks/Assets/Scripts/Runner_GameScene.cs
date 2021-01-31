@@ -79,9 +79,11 @@ public class Runner_GameScene : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.A)) {
                 SetWaitingForPlayerEntry(false);
                 InstantiateBattler(Faction.Shorts, false);
+                soundMgr.soundPlayerEntersTheFray.Play();
             } else if (Input.GetKeyDown(KeyCode.D)) {
                 SetWaitingForPlayerEntry(false);
                 InstantiateBattler(Faction.Longs, false);
+                soundMgr.soundPlayerEntersTheFray.Play();
             }
         }
     }
