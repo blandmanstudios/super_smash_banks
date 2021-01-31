@@ -86,6 +86,20 @@ public class Battler : MonoBehaviour
         if (!isAI) {
             runner.uiController.UpdatePlayerStatsDisplay(this);
         }
+
+        Animate();
+    }
+
+    void Animate() {
+        if (isBattlerActive && !IsStunned()) {
+            if (!isAI) {
+                bodyGraphic.sprite = CharSpriteMgr.blackSprites[CharSpriteMgr.animState];
+            } else if (faction == Faction.Shorts) {
+                bodyGraphic.sprite = CharSpriteMgr.blueSprites[CharSpriteMgr.animState];
+            } else {
+                bodyGraphic.sprite = CharSpriteMgr.redSprites[CharSpriteMgr.animState];
+            }
+        }
     }
 
     // Assumed: Battler is active and not stunned

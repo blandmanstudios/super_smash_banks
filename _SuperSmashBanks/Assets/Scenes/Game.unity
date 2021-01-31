@@ -158,6 +158,7 @@ MonoBehaviour:
     type: 3}
   shorts: []
   longs: []
+  charSpriteMgr: {fileID: 153769242}
   uiController: {fileID: 829931983}
   folderBattlers: {fileID: 1748101059}
 --- !u!4 &60110437
@@ -249,6 +250,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 112228036}
   m_CullTransparentMesh: 0
+--- !u!1 &153769240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 153769241}
+  - component: {fileID: 153769242}
+  m_Layer: 0
+  m_Name: CharSpriteMgr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &153769241
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153769240}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &153769242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153769240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 684cdaf73e12b21419acd9b7a4e9a11f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackLeftForward: {fileID: 21300000, guid: 5fc60ff46550b424bab1df3f8de229f9, type: 3}
+  blackRightForward: {fileID: 21300000, guid: 531d5fe15a5349640bc1ba4ae605e724, type: 3}
+  blackStationary: {fileID: 21300000, guid: b669c41683962cf4297a0b9cdc427769, type: 3}
+  blueLeftForward: {fileID: 21300000, guid: 512e45aeba985c04cb37ae9ef80c258d, type: 3}
+  blueRightForward: {fileID: 21300000, guid: 936af7c95c263bd43b12cf236d2d939f, type: 3}
+  blueStationary: {fileID: 21300000, guid: a6775316e8e68d846bfcdf009de4d193, type: 3}
+  redLeftForward: {fileID: 21300000, guid: 072179522f77c204496a1cfa3d7ed574, type: 3}
+  redRightForward: {fileID: 21300000, guid: 7fd233f6e7ba62e40a478c638da8d020, type: 3}
+  redStationary: {fileID: 21300000, guid: be3c4736e755e044a8f23f47d41b8a63, type: 3}
 --- !u!1 &474164103
 GameObject:
   m_ObjectHideFlags: 0

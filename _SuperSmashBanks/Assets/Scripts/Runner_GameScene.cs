@@ -24,6 +24,7 @@ public class Runner_GameScene : MonoBehaviour
     public static float playerMoveSpeed = 4f;
     public static float aiMoveSpeed = 3.5f;
 
+    // Shorts wear blue!
     Color colorShort = new Color32(0,0,128,255);
     Color colorLong = new Color32(128,0,0,255);
     Color colorPlayerShort = new Color32(0,0,255,255);
@@ -42,6 +43,7 @@ public class Runner_GameScene : MonoBehaviour
     public List<Battler> shorts;
     public List<Battler> longs;
 
+    public CharSpriteMgr charSpriteMgr;
     public UIController uiController;
     [SerializeField] GameObject folderBattlers;
 
@@ -123,11 +125,13 @@ public class Runner_GameScene : MonoBehaviour
         var battler = Instantiate(templateBattler);
         battler.InitStartingValues();
         battler.gameObject.transform.SetParent(folderBattlers.transform);
+        /*
         if (isAI) {
             battler.bodyGraphic.color = (faction == Faction.Shorts) ? colorShort : colorLong;
         } else {
             battler.bodyGraphic.color = (faction == Faction.Shorts) ? colorPlayerShort : colorPlayerLong;
         }
+        */
         battler.faction = faction;
         switch (faction) {
             case Faction.Shorts:

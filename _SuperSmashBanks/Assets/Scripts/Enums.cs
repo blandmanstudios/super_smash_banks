@@ -6,3 +6,9 @@ public enum Faction {
     Shorts,
     Longs,
 }
+
+public enum AnimState {
+    LeftForward,
+    RightForward,
+    Stationary,
+}
