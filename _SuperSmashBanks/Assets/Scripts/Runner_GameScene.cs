@@ -30,8 +30,8 @@ public class Runner_GameScene : MonoBehaviour
     Color colorLong = new Color32(128,0,0,255);
     Color colorPlayerShort = new Color32(0,0,255,255);
     Color colorPlayerLong = new Color32(255,0,0,255);
-    Color colorMeleeShort = new Color32(0,255,255,255);
-    Color colorMeleeLong = new Color32(255,0,255,255);
+    Color colorMeleeShort = new Color32(0,0,255,128);
+    Color colorMeleeLong = new Color32(255,0,0,128);
 
     [SerializeField] Battler templateBattler;
     [SerializeField] Melee templateMelee;
