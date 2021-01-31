@@ -90,7 +90,7 @@ public class UIController : MonoBehaviour
             gotOutTextPanelTMPro.text = $"You got out with gains of\n<b>${absGainsDisplayable}</b>.\nYou are a stock market winner!\n\n" + playAgainString;
         } else {
             gotOutTextPanelTMPro.color = colorGotOutNegativeText;
-            gotOutTextPanelTMPro.text = $"You got out with losses of\n<b>${absGainsDisplayable}</b>.\nAt least you didn't lose it all\n\n" + playAgainString;
+            gotOutTextPanelTMPro.text = $"You got out with losses of\n<b>${absGainsDisplayable}</b>\nAt least you didn't lose it all\n\n" + playAgainString;
         }
         gotOutPanel.SetActive(true);
     }
