@@ -79,11 +79,14 @@ public class Runner_GameScene : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.A)) {
                 SetWaitingForPlayerEntry(false);
                 InstantiateBattler(Faction.Shorts, false);
+                soundMgr.Stop();
                 soundMgr.soundPlayerEntersTheFray.Play();
             } else if (Input.GetKeyDown(KeyCode.D)) {
                 SetWaitingForPlayerEntry(false);
                 InstantiateBattler(Faction.Longs, false);
+                soundMgr.Stop();
                 soundMgr.soundPlayerEntersTheFray.Play();
+                
             }
         }
     }
@@ -106,11 +109,14 @@ public class Runner_GameScene : MonoBehaviour
         SetWaitingForPlayerEntry(true);
 
         soundMgr.soundGameStart.Play();
+        // TODO: enforce a join timer
+        soundMgr.soundRunningOutOfTimeToJoin.Play();
      }
 
     void CleanUpAfterPlay() {
         DestroyBattlersInList(shorts);
         DestroyBattlersInList(longs);
+        soundMgr.Stop();
     }
 
     void DestroyBattlersInList(List<Battler> battlers) {
