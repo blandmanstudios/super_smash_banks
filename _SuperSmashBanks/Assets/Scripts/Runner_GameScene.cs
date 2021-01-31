@@ -61,6 +61,18 @@ public class Runner_GameScene : MonoBehaviour
         InstantiateBattler(Faction.Shorts, false);
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (timeStockPriceLastSet + timeBetweenPriceUpdates < Time.time) {
+            if (isStockPriceVariable) {
+                PickAndSetNewStockPrice();
+            }
+            uiController.UpdateStockPriceDisplay();
+            timeStockPriceLastSet = Time.time;
+        }
+    }
+
     void InstantiateFactionAIs(Faction faction, int number) {
         for (int i=0; i<number; i++) {
             var battler = InstantiateBattler(faction, true);
@@ -119,18 +131,6 @@ public class Runner_GameScene : MonoBehaviour
         } else {
             battler.transform.position = candidateLocation;
             return battler;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (timeStockPriceLastSet + timeBetweenPriceUpdates < Time.time) {
-            if (isStockPriceVariable) {
-                PickAndSetNewStockPrice();
-            }
-            uiController.UpdateStockPriceDisplay();
-            timeStockPriceLastSet = Time.time;
         }
     }
 
