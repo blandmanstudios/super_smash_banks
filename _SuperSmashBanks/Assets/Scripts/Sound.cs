@@ -6,22 +6,22 @@ public class Sound
 {
     AudioClip audioClip;
     bool shouldOneShot;
-    AudioSource audioSource;
+    SoundMgr soundMgr;
 
-    public Sound(AudioClip audioClip, bool shouldOneShot, AudioSource audioSource) {
+    public Sound(AudioClip audioClip, bool shouldOneShot, SoundMgr soundMgr) {
         this.audioClip = audioClip;
         this.shouldOneShot = shouldOneShot;
-        this.audioSource = audioSource;
+        this.soundMgr = soundMgr;
     }
 
     public void Play() {
         //Debug.Log("Play was called");
         if (shouldOneShot) {
-            audioSource.PlayOneShot(audioClip);
+            soundMgr.audioSource.PlayOneShot(audioClip);
         } else {
-            //audioSource.Stop();
-            audioSource.clip = audioClip;
-            audioSource.Play();
+            //soundMgr.audioSource.Stop();
+            soundMgr.audioSource.clip = audioClip;
+            soundMgr.audioSource.Play();
         }
     }
 }
