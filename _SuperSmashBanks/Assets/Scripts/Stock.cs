@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Stock : MonoBehaviour
 {
-    public static float timeBeforeEnabling = 1f;
+    public static float timeBeforeEnabling = 0.01f;
     public bool isCollectable;
 
     // Start is called before the first frame update
