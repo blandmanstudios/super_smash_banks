@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Runner_GameScene : MonoBehaviour
 {
+    // Testing switches
+    private bool isStockPriceVariable = false;
+
     public static Vector2 playAreaLowerLeft = new Vector2(-6.65f, -5f);
     public static Vector2 playAreaUpperRight = new Vector2(6.65f, 2f);
     public static float BattlerHalfWidth = 0.25f;
@@ -121,7 +124,9 @@ public class Runner_GameScene : MonoBehaviour
     void Update()
     {
         if (timeStockPriceLastSet + timeBetweenPriceUpdates < Time.time) {
-            PickAndSetNewStockPrice();
+            if (isStockPriceVariable) {
+                PickAndSetNewStockPrice();
+            }
             hud.UpdateStockPriceDisplay();
             timeStockPriceLastSet = Time.time;
         }
