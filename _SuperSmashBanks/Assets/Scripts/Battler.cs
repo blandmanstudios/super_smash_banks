@@ -228,4 +228,9 @@ public class Battler : MonoBehaviour
         }
         Destroy(gameObject);
     }
+
+    void OnDestroy()
+    {
+        CancelInvoke();
+    }
 }
