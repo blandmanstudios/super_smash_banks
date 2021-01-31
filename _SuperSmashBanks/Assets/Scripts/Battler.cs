@@ -230,6 +230,11 @@ public class Battler : MonoBehaviour
                     // No stunlock
                     if (!IsStunned()) {
                         //Debug.Log("Ouch! "+ Time.time);
+                        if (isAI) {
+                            runner.soundMgr.PickAiHurtSound().Play();
+                        } else {
+                            runner.soundMgr.soundPlayerHurt.Play();
+                        }
                         SetStunned();
                         var newStock = runner.InstantiateStock(transform.position);
                         var idealSharesLost = Runner_GameScene.DollarsToShares(damageOnHit);
