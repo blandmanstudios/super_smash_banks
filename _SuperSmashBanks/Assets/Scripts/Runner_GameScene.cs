@@ -118,7 +118,7 @@ public class Runner_GameScene : MonoBehaviour
     {
         if (timeStockPriceLastSet + timeBetweenPriceUpdates < Time.time) {
             PickAndSetNewStockPrice();
-            hud.UpdateHud();
+            hud.UpdateStockPriceDisplay();
             timeStockPriceLastSet = Time.time;
         }
     }
