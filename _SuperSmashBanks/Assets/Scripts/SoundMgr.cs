@@ -36,6 +36,7 @@ public class SoundMgr : MonoBehaviour
     public Sound soundGoodGameOver;
     public Sound soundPlayerHurt;
 
+    List<Sound> soundsAiHurt;
 
     void Awake()
     {
@@ -54,6 +55,11 @@ public class SoundMgr : MonoBehaviour
         soundAiHurt3 = new Sound(aiHurt3, true, audioSource);
         soundGoodGameOver = new Sound(goodGameOver, false, audioSource);
         soundPlayerHurt = new Sound(playerHurt, true, audioSource);
+
+        soundsAiHurt= new List<Sound>();
+        soundsAiHurt.Add(soundAiHurt1);
+        soundsAiHurt.Add(soundAiHurt2);
+        soundsAiHurt.Add(soundAiHurt3);
     }
 
     // Update is called once per frame
@@ -64,5 +70,11 @@ public class SoundMgr : MonoBehaviour
 
     public void Stop() {
         audioSource.Stop();
+    }
+
+    public Sound PickAiHurtSound() {
+        var indexSelected = Random.Range(0, soundsAiHurt.Count);
+        Sound soundSelected = soundsAiHurt[indexSelected];
+        return soundSelected;
     }
 }
