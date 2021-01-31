@@ -11,6 +11,7 @@ public class Battler : MonoBehaviour
     public float Shares => shares;
     public float netWorth => Runner_GameScene.SharesToDollars(shares);
 
+    public GameObject graphicsObject;
     public SpriteRenderer bodyGraphic;
     public Faction faction;
     public bool isAI;
@@ -60,6 +61,7 @@ public class Battler : MonoBehaviour
             if (IsStunned()) {
                 //Debug.Log("Can't do anything b/c stunned");
                 if (!aiVelocityStoredForRecovery) {
+                    // Do things on your first frame of being stunned
                     lastKnownAIVelocity = rb.velocity;
                     aiVelocityStoredForRecovery = true;
                     rb.velocity = Vector2.zero;
@@ -67,10 +69,14 @@ public class Battler : MonoBehaviour
             } else {
                 if (isAI) {
                     if (aiVelocityStoredForRecovery) {
+                        // Do things on your first frame of being unstunned
                         rb.velocity = lastKnownAIVelocity;
                         aiVelocityStoredForRecovery = false;
                     }
+                    // Actually right now all this does is bounce off walls.
                     DoAIMovement();
+                    // Facing should come after movement. You need to know which way you're moving before you can face in that direction.
+                    DoAIFacing();
                 } else {
                     if (Input.GetKeyDown(KeyCode.G)) {
                         GetOut();
@@ -145,6 +151,12 @@ public class Battler : MonoBehaviour
         } else if (transform.position.x >= Runner_GameScene.playAreaUpperRight.x - Runner_GameScene.BattlerHalfWidth) {
             rb.velocity = new Vector2(-Mathf.Abs(rb.velocity.x), rb.velocity.y);
         }
+    }
+
+    public void DoAIFacing() {
+        Vector2 dir = rb.velocity;
+        var angle = Vector2.SignedAngle(Vector2.right, rb.velocity);
+        graphicsObject.transform.eulerAngles = new Vector3(0,0,angle - 90);
     }
 
     // Assumed: Battler is active and not stunned

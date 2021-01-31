@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ea36a328aa60ed4391055ccf6c6f41a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  graphicsObject: {fileID: 3775676784237872007}
   bodyGraphic: {fileID: 3775676783428121511}
   faction: 0
   isAI: 0
