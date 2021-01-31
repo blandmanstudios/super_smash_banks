@@ -97,30 +97,33 @@ public class UIController : MonoBehaviour
 
     public void UpdateStockPriceDisplay() {
         var stockPriceFiniteDecimalPlaces = Runner_GameScene.StockPrice.ToString("F2");
-        hudUpperCenterPanelTMPro.text = $"Stock Price\n{stockPriceFiniteDecimalPlaces}";
+        hudUpperCenterPanelTMPro.text = $"<b><size=60%>Stock Price</size>\n{stockPriceFiniteDecimalPlaces}</b>";
     }
 
     public void UpdatePlayerStatsDisplay(Battler battler) {
+        string netWorthFiniteDecimalPlaces;
+        string stockText;
         if (battler == null) {
-            var netWorthFiniteDecimalPlaces = string.Format("{0:n0}", Battler.initialNetWorth);
-            hudLeftPanelTMPro.text = $"Net Worth($)\n{netWorthFiniteDecimalPlaces}\nShares\nTBD";
+            netWorthFiniteDecimalPlaces = string.Format("{0:n0}", Battler.initialNetWorth);
+            stockText = "TBD";
         } else {
             // Assumption: Only the player's battler will be passed in,
             // not any other battlers.
-            var netWorthFiniteDecimalPlaces = string.Format("{0:n0}", battler.netWorth);
+            netWorthFiniteDecimalPlaces = string.Format("{0:n0}", battler.netWorth);
             var stockFiniteDecimalPlaces = string.Format("{0:n2}", battler.Shares);
-            hudLeftPanelTMPro.text = $"Net Worth($)\n{netWorthFiniteDecimalPlaces}\nShares\n{stockFiniteDecimalPlaces}";
+            stockText = stockFiniteDecimalPlaces;
         }
+        hudLeftPanelTMPro.text = $"<b><size=60%>Net Worth($)</size>\n{netWorthFiniteDecimalPlaces}\n<size=60%>Shares</size>\n{stockText}</b>";
     }
 
     public void SetRightPanelToJoinInstructions() {
         hudRightPanelStockCertificate.gameObject.SetActive(false);
-        hudRightPanelTMPro.text = "<color=#268bd2>Press A to join the Azure team</color>\n<color=#ff0000>Press D to join the reD team</color>";
+        hudRightPanelTMPro.text = "<b><color=#268bd2>Press A to join the Azure team</color>\n<color=#ff0000>Press D to join the reD team</color></b>";
     }
 
     public void SetRightPanelToGetOutInstructions() {
         hudRightPanelStockCertificate.gameObject.SetActive(false);
-        hudRightPanelTMPro.text = "Press G to exit and claim your gains (or losses)";
+        hudRightPanelTMPro.text = "<b>Press G to exit and claim your gains (or losses)</b>";
     }
 
     public void SetRightPanelToStockCertificate() {
