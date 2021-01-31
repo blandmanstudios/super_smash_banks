@@ -19,7 +19,7 @@ public class Sound
         if (shouldOneShot) {
             audioSource.PlayOneShot(audioClip);
         } else {
-            audioSource.Stop();
+            //audioSource.Stop();
             audioSource.clip = audioClip;
             audioSource.Play();
         }
