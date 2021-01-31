@@ -72,8 +72,12 @@ public class Battler : MonoBehaviour
                     }
                     DoAIMovement();
                 } else {
-                    DoPlayerMovement();
-                    DoPlayerAttacking();
+                    if (Input.GetKeyDown(KeyCode.G)) {
+                        GetOut();
+                    } else {
+                        DoPlayerMovement();
+                        DoPlayerAttacking();
+                    }
                 }
             }
         }
@@ -226,6 +230,24 @@ public class Battler : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    public void GetOut() {
+        if (!isAI) {
+            runner.uiController.UpdatePlayerStatsDisplay(this);
+            runner.uiController.ShowGotOutPanel(this.netWorth);
+            switch (faction) {
+                case Faction.Shorts:
+                    runner.shorts.Remove(this);
+                    break;
+                case Faction.Longs:
+                    runner.longs.Remove(this);
+                    break;
+                default:
+                    throw new System.Exception($"Unknown faction {faction}");
+            }
+            Destroy(gameObject);
         }
     }
 

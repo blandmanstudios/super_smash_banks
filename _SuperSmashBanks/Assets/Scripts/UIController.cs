@@ -21,6 +21,11 @@ public class UIController : MonoBehaviour
     public Image youLoseTextPanelImage;
     public TextMeshProUGUI youLoseTextPanelTMPro;
 
+    public GameObject gotOutPanel;
+    public Image gotOutPanelImage;
+    public Image gotOutTextPanelImage;
+    public TextMeshProUGUI gotOutTextPanelTMPro;
+
     Color colorHudText = new Color32(0,255,0,255);
     Color colorHudBackground = new Color32(0,0,0,255);
     Color colorInvisible = new Color32(255,255,255,0);
@@ -29,11 +34,18 @@ public class UIController : MonoBehaviour
     // Note: The Play Again line will have hardcoded color.
     Color colorYouLoseBackground = new Color32(0, 43, 54, 255);
 
+    Color colorGotOutPositiveText = new Color32(0,255,0,255);
+    Color colorGotOutNegativeText = new Color32(255,255,0,255);
+    Color colorGotOutBackground = new Color32(0, 43, 54, 255);
+
+    string playAgainString = "<b><color=#268bd2>Press P to play again</color></b>";
+
     // Start is called before the first frame update
     void Start()
     {
         SetHud();
         SetUpYouLosePanel();
+        SetUpGotOutPanel();
     }
 
     // Update is called once per frame
@@ -52,11 +64,34 @@ public class UIController : MonoBehaviour
         youLosePanelImage.color = colorYouLoseBackground;
         youLoseTextPanelImage.color = colorInvisible;
         youLoseTextPanelTMPro.color = colorYouLoseMostText;
-        youLoseTextPanelTMPro.text = "You are <b>BANKRUPT</b>!\nYou <b>FAIL</b> at finance!\nGo play video games and not the stock market!\n\n<b><color=#268bd2>Press P to play again</color></b>";
+        youLoseTextPanelTMPro.text = "You are <b>BANKRUPT</b>!\nYou <b>FAIL</b> at finance!\nGo play video games and not the stock market!\n\n" + playAgainString;
     }
 
     public void ShowYouLosePanel(bool show) {
         youLosePanel.SetActive(show);
+    }
+
+    void SetUpGotOutPanel() {
+        gotOutPanelImage.color = colorGotOutBackground;
+        gotOutTextPanelImage.color = colorInvisible;
+    }
+
+    public void HideGotOutPanel() {
+        gotOutPanel.SetActive(false);
+    }
+
+    public void ShowGotOutPanel(float finalNetWorth) {
+        var gains = finalNetWorth - Battler.initialNetWorth;
+        var absGains = Mathf.Abs(gains);
+        var absGainsDisplayable = string.Format("{0:n0}", absGains);
+        if (gains > 0) {
+            gotOutTextPanelTMPro.color = colorGotOutPositiveText;
+            gotOutTextPanelTMPro.text = $"You got out with gains of\n<b>${absGainsDisplayable}</b>.\nYou are a stock market hero!\n\n" + playAgainString;
+        } else {
+            gotOutTextPanelTMPro.color = colorGotOutNegativeText;
+            gotOutTextPanelTMPro.text = $"You got out with losses of\n<b>${absGainsDisplayable}</b>.\nAt least you didn't lose it all\n\n" + playAgainString;
+        }
+        gotOutPanel.SetActive(true);
     }
 
     public void UpdateStockPriceDisplay() {

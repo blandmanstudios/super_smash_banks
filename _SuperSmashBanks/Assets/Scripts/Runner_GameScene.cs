@@ -75,6 +75,7 @@ public class Runner_GameScene : MonoBehaviour
 
     void DoBeforeEachPlay() {
         uiController.ShowYouLosePanel(false);
+        uiController.HideGotOutPanel();
 
         // Must happen before battlers are created
         stockPrice = openingStockPrice;
