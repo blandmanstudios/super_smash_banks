@@ -158,8 +158,6 @@ public class Runner_GameScene : MonoBehaviour
                 throw new System.Exception($"Unhandled faction {faction}");
         }
         battler.isAI = isAI;
-        battler.isBattlerActive = isAI;
-        // TODO: The player shouldn't start active. but for dev testing he will
         battler.isBattlerActive = true;
 
         if (isAI) {
@@ -227,7 +225,6 @@ public class Runner_GameScene : MonoBehaviour
 
     public Stock InstantiateStock(Vector2 location) {
         //Debug.Log("Stock instantiated");
-        // TODO: We need to know how much the stock is worth.
         var newStock = Instantiate(templateStock, location, Quaternion.identity);
         return newStock;
     }
