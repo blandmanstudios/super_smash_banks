@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Battler : MonoBehaviour
 {
-    public static float initialNetWorth = 5500000f;
+    public static float initialNetWorth = 5000000f;
     public static float damageOnHit     =  100000f;
 
     private float shares;
