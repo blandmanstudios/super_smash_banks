@@ -42,4 +42,11 @@ public class HUDPanel : MonoBehaviour
         var stockPriceFiniteDecimalPlaces = Runner_GameScene.StockPrice.ToString("F2");
         upperCenterPanelTMPro.text = $"Stock Price\n{stockPriceFiniteDecimalPlaces}";
     }
+
+    public void UpdatePlayerStatsDisplay(Battler battler) {
+        // Assumption: Only the player's battler will be passed in.
+        var netWorthFiniteDecimalPlaces = battler.netWorth.ToString("F0");
+        var stockFiniteDecimalPlaces = battler.Stock.ToString("F2");
+        leftPanelTMPro.text = $"Net Worth($)\n{netWorthFiniteDecimalPlaces}\nShares\n{stockFiniteDecimalPlaces}";
+    }
 }

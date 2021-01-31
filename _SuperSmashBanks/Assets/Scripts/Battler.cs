@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Battler : MonoBehaviour
 {
+    public static float initialNetWorth = 1000000f;
+
+    private float stock;
+    public float Stock => stock;
+    public float netWorth => stock * Runner_GameScene.StockPrice;
+
     public SpriteRenderer bodyGraphic;
     public Faction faction;
     public bool isAI;
@@ -40,6 +46,7 @@ public class Battler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Movement and attacking
         if (isBattlerActive) {
             if (IsStunned()) {
                 //Debug.Log("Can't do anything b/c stunned");
@@ -60,6 +67,11 @@ public class Battler : MonoBehaviour
                     DoPlayerAttacking();
                 }
             }
+        }
+
+        // Reporting
+        if (!isAI) {
+            runner.hud.UpdatePlayerStatsDisplay(this);
         }
     }
 
@@ -131,6 +143,10 @@ public class Battler : MonoBehaviour
             lastUsedMelee = Time.time;
             runner.InstantiateMelee(transform.position, faction);
         }
+    }
+
+    public void InitStartingValues() {
+        stock = initialNetWorth / Runner_GameScene.StockPrice;
     }
 
     public void InitAndStartAIMovement() {

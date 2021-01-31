@@ -39,12 +39,15 @@ public class Runner_GameScene : MonoBehaviour
     public List<Battler> shorts;
     public List<Battler> longs;
 
-    [SerializeField] HUDPanel hud;
+    public HUDPanel hud;
     [SerializeField] GameObject folderBattlers;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Must happen before battlers are created
+        stockPrice = openingStockPrice;
+
         shorts = new List<Battler>();
         longs = new List<Battler>();
         InstantiateFactionAIs(Faction.Shorts, numStartingShortAIs);
@@ -61,6 +64,7 @@ public class Runner_GameScene : MonoBehaviour
 
     Battler InstantiateBattler(Faction faction, bool isAI) {
         var battler = Instantiate(templateBattler);
+        battler.InitStartingValues();
         battler.gameObject.transform.SetParent(folderBattlers.transform);
         if (isAI) {
             battler.bodyGraphic.color = (faction == Faction.Shorts) ? colorShort : colorLong;
